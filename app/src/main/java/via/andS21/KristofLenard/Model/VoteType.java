@@ -6,5 +6,5 @@ public enum VoteType
     FPTP, //first-past-the-post - also used for referendums (yes/no)
     IRV,  //instant-runoff
     STV,  //single transferable vote
-    PARLF //parallel voting - list and FPTP together
+    MMP   //mixed-member proportional (AKA additional member system)
 }

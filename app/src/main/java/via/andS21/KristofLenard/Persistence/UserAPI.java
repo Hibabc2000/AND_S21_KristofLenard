@@ -21,10 +21,6 @@ public interface UserAPI
     Call<User> createUser(@Body User user);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @DELETE("user")
-    Call<User> delUser(@Body String username);
-
-    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @PATCH("user")
     Call<User> updateUser(@Body User user);
 

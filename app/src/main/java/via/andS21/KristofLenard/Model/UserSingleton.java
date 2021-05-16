@@ -1,6 +1,12 @@
 package via.andS21.KristofLenard.Model;
 
 public class UserSingleton {
+
+    /**
+     * This class is to ensure that the user being handled is unique,
+     * to prevent potential security and software issues.
+     */
+
     private static UserSingleton userSingleton = null;
     private static User user;
 
@@ -19,5 +25,9 @@ public class UserSingleton {
 
     public static User getUser() {
         return user;
+    }
+
+    public static void setVoter(Voter voter) {
+        user.setVoter(voter);
     }
 }
