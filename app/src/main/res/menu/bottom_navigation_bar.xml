@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_news"
+        android:title="News">
+        <!--android:icon="@drawable/infoicon"-->
+    </item>
+
+    <item
+        android:id="@+id/item_voting"
+        android:title="Voting">
+        <!--android:icon="@drawable/dashboard"-->
+
+    </item>
+
+    <item
+        android:id="@+id/item_voter"
+        android:title="Profile">
+    <!--android:icon="@drawable/settings"-->
+
+    </item>
+</menu>

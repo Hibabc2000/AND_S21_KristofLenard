@@ -1,8 +1,18 @@
 package via.andS21.KristofLenard.Persistence;
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+
+import java.io.InputStream;
+import java.net.URL;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -29,12 +39,12 @@ public class WebClient {
             = new HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY);
 
-    private static final String jwt = ""; //json web token for authentication
+    private static String jwt = ""; //json web token for authentication
 
-    private static final VoterAPI voterAPI = createService(VoterAPI.class, jwt);
-    private static final VoteAPI voteAPI = createService(VoteAPI.class, jwt);
-    private static final NewsAPI newsAPI = createService(NewsAPI.class, jwt);
-    private static final UserAPI userAPI = createService(UserAPI.class, jwt);
+    private static VoterAPI voterAPI = createService(VoterAPI.class);
+    private static VoteAPI voteAPI = createService(VoteAPI.class);
+    private static NewsAPI newsAPI = createService(NewsAPI.class);
+    private static UserAPI userAPI = createService(UserAPI.class);
 
     public static <S> S createService(Class<S> serviceClass) {
         if (!httpClient.interceptors().contains(logging)) {
@@ -77,5 +87,39 @@ public class WebClient {
     public static UserAPI getUserAPI()
     {
         return userAPI;
+    }
+
+    public static boolean token(String auth)
+    {
+        Call<String> tokenCall = getUserAPI().getToken(auth);
+        final boolean[] isSuccess = {false};
+        tokenCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.body() != null) {
+                    jwt = response.body();
+                }
+                voterAPI = createService(VoterAPI.class, jwt);
+                userAPI = createService(UserAPI.class, jwt);
+                newsAPI = createService(NewsAPI.class, jwt);
+                voteAPI = createService(VoteAPI.class, jwt);
+                isSuccess[0] = true;
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                isSuccess[0] = false;
+            }
+        });
+        return isSuccess[0];
+    }
+
+    public static Drawable LoadImageFromWebOperations(String url) {
+        try {
+            InputStream is = (InputStream) new URL(url).getContent();
+            return Drawable.createFromStream(is, "src name");
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

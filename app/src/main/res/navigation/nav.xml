@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/signIn">
+
+    <fragment
+        android:id="@+id/news"
+        android:name="via.andS21.KristofLenard.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_news_to_voting"
+            app:destination="@id/vote" />
+    </fragment>
+    <fragment
+        android:id="@+id/vote"
+        android:name="via.andS21.KristofLenard.VotingFragment"
+        android:label="fragment_voting"
+        tools:layout="@layout/fragment_voting" />
+    <fragment
+        android:id="@+id/signIn"
+        android:name="via.andS21.KristofLenard.SignIn"
+        android:label="SignIn"
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/action_signIn_to_news"
+            app:destination="@id/news" />
+    </fragment>
+</navigation>
