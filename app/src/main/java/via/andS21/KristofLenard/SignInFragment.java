@@ -92,6 +92,12 @@ public class SignInFragment extends Fragment {
                 UserSingleton.getInstance(temp);
                 getParentFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new NewsFragment()).commit();
             }
+            //This part of the code is just so that the demo can get past login
+            BottomNavigationView bottomNavigationView = (BottomNavigationView)
+                    view.getRootView().findViewById(R.id.bottomNavigationView);
+            bottomNavigationView.setVisibility(View.VISIBLE); //Turns on Navigation view
+            UserSingleton.getInstance(temp);
+            getParentFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new NewsFragment()).commit();
         });
     }
 }

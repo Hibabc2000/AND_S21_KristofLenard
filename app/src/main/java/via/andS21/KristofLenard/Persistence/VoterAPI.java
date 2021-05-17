@@ -12,6 +12,6 @@ import via.andS21.KristofLenard.Model.Voter;
 public interface VoterAPI
 {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @GET("voter/eligible")
+    @POST("voter/eligible")
     Call<Boolean> checkEligibility(@Body Voter voter);
 }

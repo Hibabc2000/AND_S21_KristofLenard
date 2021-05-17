@@ -24,7 +24,7 @@ public class WebClient {
      */
 
     //URL for connection - empty since I don't actually have an API
-    private static final String BASE_URL = "";
+    private static final String BASE_URL = "http://www.noactualwebsiteexists.com/KristofLenard/";
 
     private static final Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
             .baseUrl(BASE_URL)

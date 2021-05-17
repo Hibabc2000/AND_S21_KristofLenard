@@ -8,16 +8,17 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface VoteAPI {
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @GET("vote/candidates")
-    Call<List<String>> getCandidates(@Body String filter);
+    @GET("vote/candidates/{filter}")
+    Call<List<String>> getCandidates(@Path("filter") String filter);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @GET("vote/candidates/images")
-    Call<List<String>> getCandidateImages(@Body String filter);
+    @GET("vote/candidates/images/{filter}")
+    Call<List<String>> getCandidateImages(@Path("filter") String filter);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("vote")

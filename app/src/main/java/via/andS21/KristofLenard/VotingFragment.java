@@ -60,18 +60,20 @@ public class VotingFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.voting_fragment, container, false);
         VoteType voteType = viewModel.getVoteType(); //not used right now, would be used if we had multiple layouts for voting
+        View subView_temp = view.findViewById(R.id.votingView);
+        View subView = inflater.inflate(R.layout.voting_type_list, (ViewGroup) subView_temp.getParent().getParent(), false);
         Voter voter = UserSingleton.getUser().getVoter();
         if (voter != null) {
             viewModel.getVoter().setValue(voter);
         }
-        recyclerView = view.findViewById(R.id.candidates_rv);
+        recyclerView = (RecyclerView) subView.findViewById(R.id.candidates_rv);
         recyclerView.hasFixedSize();
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(subView.getContext()));
 
         VotingTypeListAdapter adapter = new VotingTypeListAdapter(voteType);
         recyclerView.setAdapter(adapter);
 
-        Button button = view.findViewById(R.id.voteButton);
+        Button button = subView.findViewById(R.id.voteButton);
         button.setOnClickListener(v -> {
 
             DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {

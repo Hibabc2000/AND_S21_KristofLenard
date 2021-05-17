@@ -3,6 +3,7 @@ package via.andS21.KristofLenard;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,12 +18,17 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 
 import via.andS21.KristofLenard.Model.User;
 import via.andS21.KristofLenard.Model.UserSingleton;
@@ -67,20 +73,12 @@ public class VoterFragment extends Fragment {
         Voter voter = new Voter();
 
         Spinner countrySpinner = view.findViewById(R.id.countrySpinner);
-        ArrayList<String> countries = new ArrayList<>();
-        countries.add("Denmark");
-        countries.add("Hungary");
-        countries.add("USA"); //TODO: de-hardcoding of strings
-        ArrayAdapter<String> countriesAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, countries);
+        ArrayAdapter<CharSequence> countriesAdapter = ArrayAdapter.createFromResource(getContext(), R.array.countries, android.R.layout.simple_spinner_dropdown_item);
         countriesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         countrySpinner.setAdapter(countriesAdapter);
 
         Spinner authMethodSpinner = view.findViewById(R.id.authMethodSpinner);
-        ArrayList<String> authMethods = new ArrayList<>();
-        authMethods.add("Passport");
-        authMethods.add("National ID card");
-        authMethods.add("Driver's license"); //TODO: de-hardcoding of strings
-        ArrayAdapter<String> authMethodAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, authMethods);
+        ArrayAdapter<CharSequence> authMethodAdapter = ArrayAdapter.createFromResource(getContext(), R.array.authMethods, android.R.layout.simple_spinner_dropdown_item);
         authMethodAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         authMethodSpinner.setAdapter(authMethodAdapter);
 
@@ -106,6 +104,10 @@ public class VoterFragment extends Fragment {
             EditText date = view.findViewById(R.id.editTextDateOfBirth);
             date.setText(voter1.getDateOfBirth());
 
+            ArrayList<String> countries = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.countries)));
+
+            ArrayList<String> authMethods = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.authMethods)));
+
             if(!countries.contains(voter1.getCountry()))
             {
                 countries.add(voter1.getCountry());
@@ -122,6 +124,23 @@ public class VoterFragment extends Fragment {
 
             EditText authCode = view.findViewById(R.id.editTextAuthCode);
             voter1.setAuthCode(authCode.getText().toString());
+        });
+
+        EditText date = view.findViewById(R.id.editTextDateOfBirth);
+        date.setOnClickListener(v -> {
+            DatePickerDialog dialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view1, int year, int month, int dayOfMonth) {
+                    Calendar calendar = Calendar.getInstance();
+                    String myFormat = "dd/mm/yyyy";
+                    SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, getResources().getConfiguration().getLocales().get(0));
+                    calendar.set(Calendar.YEAR, year);
+                    calendar.set(Calendar.MONTH, month);
+                    calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                    date.setText(dateFormat.format(calendar.getTime()));
+                }
+            }, 1970, 1, 1);
+            dialog.show();
         });
 
         return view;

@@ -10,9 +10,6 @@
         android:name="via.andS21.KristofLenard.NewsFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news" >
-        <action
-            android:id="@+id/action_news_to_voting"
-            app:destination="@id/vote" />
     </fragment>
     <fragment
         android:id="@+id/vote"

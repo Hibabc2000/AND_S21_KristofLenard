@@ -8,13 +8,14 @@ import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import via.andS21.KristofLenard.Model.*;
 
 public interface UserAPI
 {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @GET("user")
-    Call<User> getUser(@Body String username);
+    @GET("user/{username}")
+    Call<User> getUser(@Path("username")String username);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("user")
