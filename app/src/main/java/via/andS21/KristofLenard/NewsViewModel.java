@@ -1,8 +1,5 @@
 package via.andS21.KristofLenard;
 
-import android.content.Intent;
-import android.net.Uri;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -13,7 +10,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import via.andS21.KristofLenard.Model.User;
-import via.andS21.KristofLenard.Persistence.LocalPersistence;
 import via.andS21.KristofLenard.Persistence.WebClient;
 
 public class NewsViewModel extends ViewModel {
@@ -21,17 +17,16 @@ public class NewsViewModel extends ViewModel {
     private MutableLiveData<User> userLiveData;
     private MutableLiveData<List<String>> newsTitle;
     private MutableLiveData<List<String>> newsImageURLs;
-    private LocalPersistence persistence;
 
     public NewsViewModel() {
         userLiveData = new MutableLiveData<>();
-        persistence = new LocalPersistence();
         List<String> newsTitleList = new ArrayList<String>();
         newsTitle = new MutableLiveData<>();
         newsTitle.setValue(newsTitleList);
         List<String> newsImageURLList = new ArrayList<String>();
         newsImageURLs = new MutableLiveData<>();
         newsImageURLs.setValue(newsImageURLList);
+        getDataFromAPI(""); //no filtering currently - would need filter by election/vote if we had an API
     }
 
     public MutableLiveData<User> getUser() {

@@ -27,3 +27,5 @@ WON'T HAVE:
  - The app will not communicate in any way with any official databases to retrieve voter information.
  - The app will not store any personal data besides an app-based ID, their name, their date of birth, and their votes.
  - The app will not be compliant with any regulations concerning data handling, or anything else as required by law.
+
+Note during (theoretically) last upload: App was not tested (I had some problems with the emulator)

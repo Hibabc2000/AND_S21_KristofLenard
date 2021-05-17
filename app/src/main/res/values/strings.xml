@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">AND_S21_KristofLenard</string>
+    <string name="news_main_title">News</string>
+    <string name="news_image_description">Image for a news article</string>
+    <string name="news_title">NewsTitle</string>
+    <string name="sign_in_main_title">Sign in</string>
+    <string name="signin_username">Username</string>
+    <string name="signin_password">Password</string>
+    <string name="sign_in_button">Sign in</string>
+    <string name="voter_main_title">Voter</string>
+    <string name="voter_name_title">Name:</string>
+    <string name="voter_DoB_title">Date of birth:</string>
+    <string name="voter_country_title">Country:</string>
+    <string name="voter_document_title">Personal document:</string>
+    <string name="voter_document_id_title">Number of document:</string>
+    <string name="voter_button_confirm_changes">Confirm changes</string>
+    <string name="vote_main_title">Vote</string>
+    <string name="vote_current_selection_title">Current selection:</string>
+    <string name="vote_button_confirm_vote">Confirm vote</string>
+    <string name="voting_type_list_element_image_description">Image of this candidate</string>
+    <string name="voting_type_list_element_candidate_name">Name of candidate</string>
+    <string name="voting_type_list_element_checkbox">Vote for this candidate</string>
 </resources>

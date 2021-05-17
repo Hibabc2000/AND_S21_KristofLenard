@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AND_S21_KristofLenard</string>
+    <string name="news_main_title">Hírek</string>
+    <string name="news_image_description">Egy újságcikk képe</string>
+    <string name="news_title">ÚjságcikkCíme</string>
+    <string name="sign_in_main_title">Bejelentkezés</string>
+    <string name="signin_username">Felhasználónév</string>
+    <string name="signin_password">Jelszó</string>
+    <string name="sign_in_button">Jelentkezz be</string>
+    <string name="voter_main_title">Szavazó</string>
+    <string name="voter_name_title">"Neve: "</string>
+    <string name="voter_DoB_title">"Születési dátuma: "</string>
+    <string name="voter_country_title">"Országa: "</string>
+    <string name="voter_document_title">"Azonosító dokumentuma: "</string>
+    <string name="voter_document_id_title">"Dokumentum száma: "</string>
+    <string name="voter_button_confirm_changes">Megerősít</string>
+    <string name="vote_main_title">Szavazás</string>
+    <string name="vote_current_selection_title">"Jelenlegi választás: "</string>
+    <string name="vote_button_confirm_vote">Szavazat megerősítése</string>
+    <string name="voting_type_list_element_image_description">A jelölt képe</string>
+    <string name="voting_type_list_element_candidate_name">A jelölt neve</string>
+    <string name="voting_type_list_element_checkbox">Erre a jelöltre szavazok</string>
+</resources>

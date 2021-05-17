@@ -62,7 +62,7 @@ public class VoterFragment extends Fragment {
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.news_fragment, container, false);
+        View view = inflater.inflate(R.layout.voter_fragment, container, false);
 
         Voter voter = new Voter();
 

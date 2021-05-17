@@ -18,7 +18,7 @@
             android:id="@+id/voter_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Voter"
+            android:text="@string/voter_main_title"
             android:textAlignment="center"
             android:textSize="30sp" />
 
@@ -26,7 +26,7 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name:"
+            android:text="@string/voter_name_title"
             android:textSize="24sp" />
 
         <EditText
@@ -41,7 +41,7 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Date of birth: "
+            android:text="@string/voter_DoB_title"
             android:textSize="24sp" />
 
         <EditText
@@ -55,7 +55,7 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Country: "
+            android:text="@string/voter_country_title"
             android:textSize="24sp" />
 
         <Spinner
@@ -68,7 +68,7 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Personal document: "
+            android:text="@string/voter_document_title"
             android:textSize="24sp" />
 
         <Spinner
@@ -81,7 +81,7 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Number of document: "
+            android:text="@string/voter_document_id_title"
             android:textSize="24sp" />
 
         <EditText
@@ -94,13 +94,13 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="12sp" />
+            android:layout_height="12dp" />
 
         <Button
             android:id="@+id/confirmVoter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Confirm changes" />
+            android:text="@string/voter_button_confirm_changes" />
 
     </LinearLayout>
 

@@ -15,10 +15,17 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
 
+    private Fragment newsFragment;
+    private Fragment votingFragment;
+    private Fragment voterFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        newsFragment = new NewsFragment();
+        votingFragment = new VotingFragment();
+        voterFragment = new VoterFragment();
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationListener);
         bottomNavigationView.setVisibility(View.INVISIBLE); //To not see navigation bar on Sign In menu
@@ -32,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
         int itemId = item.getItemId();
 
         if (itemId == R.id.item_news) {
-            selectedFragment = new NewsFragment();
+            selectedFragment = newsFragment;
         } else if (itemId == R.id.item_voting) {
-            selectedFragment = new VotingFragment();
+            selectedFragment = votingFragment;
         } else if (itemId == R.id.item_voter) {
-            selectedFragment = new VoterFragment();
+            selectedFragment = voterFragment;
         }
 
         if (selectedFragment != null) {
@@ -45,4 +52,9 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     };
+
+    public Fragment getNewsFragment()
+    {
+        return newsFragment;
+    }
 }

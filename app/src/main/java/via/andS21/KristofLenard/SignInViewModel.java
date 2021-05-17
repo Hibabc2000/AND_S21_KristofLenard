@@ -1,5 +1,7 @@
 package via.andS21.KristofLenard;
 
+import android.content.SharedPreferences;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -9,18 +11,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import via.andS21.KristofLenard.Model.User;
-import via.andS21.KristofLenard.Persistence.LocalPersistence;
 import via.andS21.KristofLenard.Persistence.WebClient;
 
 public class SignInViewModel extends ViewModel {
-    // TODO: Implement the ViewModel
 
     private MutableLiveData<User> userLiveData;
-    private LocalPersistence persistence;
 
     public SignInViewModel() {
         userLiveData = new MutableLiveData<>();
-        persistence = new LocalPersistence();
     }
 
     public MutableLiveData<User> getUser() {
