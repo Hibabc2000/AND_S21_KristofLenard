@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         newsFragment = new NewsFragment();
         votingFragment = new VotingFragment();
         voterFragment = new VoterFragment();
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationListener);
         bottomNavigationView.setVisibility(View.INVISIBLE); //To not see navigation bar on Sign In menu
         getSupportFragmentManager().beginTransaction()
