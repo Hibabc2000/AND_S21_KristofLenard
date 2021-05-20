@@ -28,4 +28,4 @@ WON'T HAVE:
  - The app will not store any personal data besides an app-based ID, their name, their date of birth, and their votes.
  - The app will not be compliant with any regulations concerning data handling, or anything else as required by law.
 
-Youtube link: 
+Youtube link: https://youtu.be/CZw0IRsAuoI
