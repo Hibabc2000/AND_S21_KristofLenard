@@ -52,4 +52,9 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     };
+
+    public Fragment getNewsFragment()
+    {
+        return newsFragment;
+    }
 }

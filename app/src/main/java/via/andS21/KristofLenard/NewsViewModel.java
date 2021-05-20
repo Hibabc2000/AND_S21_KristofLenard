@@ -4,12 +4,14 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import via.andS21.KristofLenard.Model.User;
+import via.andS21.KristofLenard.Model.UserSingleton;
 import via.andS21.KristofLenard.Persistence.WebClient;
 
 public class NewsViewModel extends ViewModel {
@@ -20,12 +22,14 @@ public class NewsViewModel extends ViewModel {
 
     public NewsViewModel() {
         userLiveData = new MutableLiveData<>();
+        userLiveData.setValue(UserSingleton.getUser());
         List<String> newsTitleList = new ArrayList<String>();
         newsTitle = new MutableLiveData<>();
         newsTitle.setValue(newsTitleList);
         List<String> newsImageURLList = new ArrayList<String>();
         newsImageURLs = new MutableLiveData<>();
         newsImageURLs.setValue(newsImageURLList);
+        newsDemo();
         getDataFromAPI(""); //no filtering currently - would need filter by election/vote if we had an API
     }
 
@@ -74,5 +78,13 @@ public class NewsViewModel extends ViewModel {
 
             }
         });
+    }
+
+    public void newsDemo()
+    {
+        String[] demoTitles = {"Title 1", "Title 2"};
+        newsTitle.getValue().addAll(Arrays.asList(demoTitles));
+        String[] demoImages = {"https://images.pexels.com/photos/7651065/pexels-photo-7651065.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260", "https://images.pexels.com/photos/7558445/pexels-photo-7558445.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"};
+        newsImageURLs.getValue().addAll(Arrays.asList(demoImages));
     }
 }

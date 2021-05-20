@@ -1,5 +1,6 @@
 package via.andS21.KristofLenard;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,15 +20,16 @@ public class VotingTypeListAdapter extends RecyclerView.Adapter<VotingTypeListAd
     private VotingViewModel viewModel;
     private int selectedPosition = -1; // no default
 
-    public VotingTypeListAdapter(VoteType voteType)
+    public VotingTypeListAdapter(VoteType voteType, VotingViewModel model)
     {
-        //not used, would be a switch on voteType to decide which sub-layout to call if we had more
+        viewModel = model;
+        //voteType not used, would be a switch to decide which sub-layout to call if we had more
     }
 
     @NonNull
     @Override
     public VotingTypeListAdapter.VoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.voting_type_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.voting_type_list_element, parent, false);
         return new VotingTypeListAdapter.VoteViewHolder(view);
     }
 
@@ -39,7 +41,8 @@ public class VotingTypeListAdapter extends RecyclerView.Adapter<VotingTypeListAd
             notifyDataSetChanged();
         });
         if(viewModel.getCandidateImageURLsLiveData().getValue().size() >= position) {
-            holder.candidateImage.setImageDrawable(WebClient.LoadImageFromWebOperations(viewModel.getCandidateImageURLsLiveData().getValue().get(position)));
+            Drawable d = WebClient.LoadImageFromWebOperations(viewModel.getCandidateImageURLsLiveData().getValue().get(position));
+            holder.candidateImage.setImageDrawable(d);
         }
         if(viewModel.getCandidateNameLiveData().getValue().size() >= position) {
             holder.candidateName.setText(viewModel.getCandidateNameLiveData().getValue().get(position));

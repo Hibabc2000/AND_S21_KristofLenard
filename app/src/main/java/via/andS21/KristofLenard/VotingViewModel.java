@@ -4,11 +4,13 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import via.andS21.KristofLenard.Model.UserSingleton;
 import via.andS21.KristofLenard.Model.VoteType;
 import via.andS21.KristofLenard.Model.Voter;
 import via.andS21.KristofLenard.Persistence.WebClient;
@@ -22,7 +24,7 @@ public class VotingViewModel extends ViewModel {
 
     public VotingViewModel()
     {
-        Voter voter = new Voter();
+        Voter voter = UserSingleton.getUser().getVoter();
         voterLiveData = new MutableLiveData<>();
         voterLiveData.setValue(voter);
         ArrayList<String> candidateName = new ArrayList<>();
@@ -34,6 +36,7 @@ public class VotingViewModel extends ViewModel {
         selectedCandidate = new MutableLiveData<>();
         selectedCandidate.setValue(-1);
         getDataFromAPI(""); //no filtering currently - would need filter by election/vote if we had an API
+        votingDemo();
     }
 
     public VoteType getVoteType()
@@ -98,5 +101,13 @@ public class VotingViewModel extends ViewModel {
 
             }
         });
+    }
+
+    public void votingDemo()
+    {
+        String[] demoTitles = {"Person 1", "Person 2"};
+        candidateNameLiveData.getValue().addAll(Arrays.asList(demoTitles));
+        String[] demoImages = {"https://images.pexels.com/photos/7651065/pexels-photo-7651065.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260", "https://images.pexels.com/photos/7558445/pexels-photo-7558445.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"};
+        candidateImageURLsLiveData.getValue().addAll(Arrays.asList(demoImages));
     }
 }

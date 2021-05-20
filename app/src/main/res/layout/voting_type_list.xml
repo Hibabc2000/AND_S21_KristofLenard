@@ -25,17 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="24dp" />
 
-        <TextView
-            android:id="@+id/currentSelection"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/vote_current_selection_title"
-            android:textSize="30sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="24dp" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/candidates_rv"
             android:layout_width="match_parent"

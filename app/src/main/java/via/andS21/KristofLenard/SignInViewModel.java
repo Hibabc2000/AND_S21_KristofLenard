@@ -46,4 +46,10 @@ public class SignInViewModel extends ViewModel {
             }
         });
     }
+
+    public boolean demoSignIn()
+    {
+        String s = userLiveData.getValue().getUsername() + ":" + userLiveData.getValue().getPassword();
+        return s.equals("User1:qwertz");
+    }
 }

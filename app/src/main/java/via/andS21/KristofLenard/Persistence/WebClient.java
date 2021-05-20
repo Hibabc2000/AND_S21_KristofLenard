@@ -1,10 +1,16 @@
 package via.andS21.KristofLenard.Persistence;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 import okhttp3.OkHttpClient;
@@ -58,7 +64,7 @@ public class WebClient {
     public static <S> S createService(Class<S> serviceClass, final String token) {
         if (token != null) {
             httpClient.interceptors().clear();
-            httpClient.addInterceptor( chain -> {
+            httpClient.addInterceptor(chain -> {
                 Request original = chain.request();
                 Request.Builder builder1 = original.newBuilder()
                         .header("Authorization", token);
@@ -72,31 +78,29 @@ public class WebClient {
         return retrofit.create(serviceClass);
     }
 
-    public static VoterAPI getVoterAPI()
-    {
+    public static VoterAPI getVoterAPI() {
         return voterAPI;
     }
-    public static VoteAPI getVoteAPI()
-    {
+
+    public static VoteAPI getVoteAPI() {
         return voteAPI;
     }
-    public static NewsAPI getNewsAPI()
-    {
+
+    public static NewsAPI getNewsAPI() {
         return newsAPI;
     }
-    public static UserAPI getUserAPI()
-    {
+
+    public static UserAPI getUserAPI() {
         return userAPI;
     }
 
-    public static boolean token(String auth)
-    {
+    public static boolean token(String auth) {
         Call<String> tokenCall = getUserAPI().getToken(auth);
         final boolean[] isSuccess = {false};
         tokenCall.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if(response.body() != null) {
+                if (response.body() != null) {
                     jwt = response.body();
                 }
                 voterAPI = createService(VoterAPI.class, jwt);
@@ -115,11 +119,28 @@ public class WebClient {
     }
 
     public static Drawable LoadImageFromWebOperations(String url) {
+        final BitmapDrawable[] drawable = new BitmapDrawable[1];
+        Thread thread = new Thread(() -> {
+            try {
+                Bitmap x;
+
+                HttpURLConnection connection = (HttpURLConnection) new URL(url.trim()).openConnection();
+                connection.connect();
+                InputStream input = connection.getInputStream();
+
+                x = BitmapFactory.decodeStream(input);
+                drawable[0] = new BitmapDrawable(Resources.getSystem(), x);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        thread.start();
         try {
-            InputStream is = (InputStream) new URL(url).getContent();
-            return Drawable.createFromStream(is, "src name");
-        } catch (Exception e) {
-            return null;
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        return drawable[0];
     }
 }

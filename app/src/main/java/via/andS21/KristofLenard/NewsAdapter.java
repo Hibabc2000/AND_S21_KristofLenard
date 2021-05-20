@@ -1,5 +1,6 @@
 package via.andS21.KristofLenard;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     @Override
     public void onBindViewHolder(@NonNull NewsAdapter.NewsViewHolder holder, int position) {
         if(newsViewModel.getNewsImageURLs().getValue().size() >= position) {
-            holder.newsImage.setImageDrawable(WebClient.LoadImageFromWebOperations(newsViewModel.getNewsImageURLs().getValue().get(position)));
+            Drawable d = WebClient.LoadImageFromWebOperations(newsViewModel.getNewsImageURLs().getValue().get(position));
+            holder.newsImage.setImageDrawable(d);
         }
         if(newsViewModel.getNewsTitle().getValue().size() >= position) {
             holder.newsTitle.setText(newsViewModel.getNewsTitle().getValue().get(position));
