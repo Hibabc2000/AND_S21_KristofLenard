@@ -36,7 +36,7 @@ public class VotingTypeListAdapter extends RecyclerView.Adapter<VotingTypeListAd
     @Override
     public void onBindViewHolder(@NonNull VotingTypeListAdapter.VoteViewHolder holder, int position) {
         holder.checkBox.setChecked(position == selectedPosition);
-        holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        holder.checkBox.setOnClickListener(v -> {
             selectedPosition = holder.getAdapterPosition();
             notifyDataSetChanged();
         });
